@@ -27,7 +27,7 @@ Then open http://localhost:8000.
 
 ## Deploy
 
-`.github/workflows/pages.yml` publishes `site/` to GitHub Pages on every push to `main`.
+`.github/workflows/pages.yml` publishes `site/` to GitHub Pages on every push to `master`.
 One-time setup: in the repository go to **Settings > Pages** and set **Source** to **GitHub Actions**.
 To use a custom domain, add it under Settings > Pages and create a `site/CNAME` file containing the domain.
 
