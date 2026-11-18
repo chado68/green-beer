@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Report an Incident | CSI Cyber Solutions</title>
+  <meta name="description" content="Submit a cyber incident for triage. A responder will contact you based on severity.">
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="assets/ir.css">
+</head>
+<body class="ir">
+  <div class="ir-banner">
+    <div class="wrap">
+      <span>Operations down or ransomware on screen?</span>
+      <span>Don't wait for the form. Call <a data-ir-hotline href="tel:+17025550100">(702) 555-0100</a> now.</span>
+    </div>
+  </div>
+  <header class="ir-header">
+    <div class="wrap">
+      <a class="ir-brand" href="../">CSI Cyber Solutions</a>
+      <nav class="ir-nav" aria-label="Incident response">
+        <a href="index.html">Incident Response</a>
+        <a href="intake.html" aria-current="page">Report an Incident</a>
+        <a href="retainers.html">IR Retainers</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <h1>Report an incident for triage</h1>
+      <p class="lede">Tell us what you know right now. Partial answers are fine; choose "Unknown" where you are not sure. A responder will follow up based on the priority below.</p>
+
+      <div class="notice">
+        <strong>Before you submit:</strong> do not include passwords, full card numbers, patient or guest records, or any classified or CUI information. If you think your email is compromised, give us a phone number and a personal email instead of your work address.
+      </div>
+
+      <form id="ir-intake" novalidate>
+        <input type="hidden" name="computed_priority" id="computed_priority">
+        <input type="hidden" name="reporter_timezone">
+        <input type="hidden" name="form_source" value="website-ir-intake">
+        <div class="hp" aria-hidden="true">
+          <label for="gotcha">Leave this empty</label>
+          <input type="text" id="gotcha" name="_gotcha" tabindex="-1" autocomplete="off">
+        </div>
+
+        <fieldset>
+          <legend>1. Organization and contact</legend>
+          <div class="fields">
+            <div>
+              <label for="organization" class="req">Organization</label>
+              <input type="text" id="organization" name="organization" required autocomplete="organization">
+            </div>
+            <div>
+              <label for="industry">Industry</label>
+              <select id="industry" name="industry">
+                <option value="">Select...</option>
+                <option>Gaming / casino</option>
+                <option>Hospitality / resort</option>
+                <option>Defense contractor / DIB</option>
+                <option>Government</option>
+                <option>Healthcare</option>
+                <option>Finance</option>
+                <option>Retail</option>
+                <option>Professional services</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div>
+              <label for="contact_name" class="req">Your name</label>
+              <input type="text" id="contact_name" name="contact_name" required autocomplete="name">
+            </div>
+            <div>
+              <label for="contact_role">Role / title</label>
+              <input type="text" id="contact_role" name="contact_role" autocomplete="organization-title">
+            </div>
+            <div>
+              <label for="contact_phone" class="req">Callback phone</label>
+              <input type="tel" id="contact_phone" name="contact_phone" required autocomplete="tel">
+            </div>
+            <div>
+              <label for="contact_email" class="req">Email</label>
+              <input type="email" id="contact_email" name="email" required autocomplete="email">
+              <p class="hint">Use an address you trust is not compromised.</p>
+            </div>
+            <div>
+              <label for="retainer_status">Existing relationship</label>
+              <select id="retainer_status" name="retainer_status">
+                <option value="none">Not a current client</option>
+                <option value="retainer">Retainer client</option>
+                <option value="client">Client without retainer</option>
+              </select>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>2. What happened</legend>
+          <div class="fields">
+            <div>
+              <label for="incident_type" class="req">Incident type</label>
+              <select id="incident_type" name="incident_type" required>
+                <option value="">Select the best match...</option>
+                <option>Ransomware / extortion</option>
+                <option>Business email compromise</option>
+                <option>Phishing / credential theft</option>
+                <option>Malware infection</option>
+                <option>Unauthorized access / account takeover</option>
+                <option>Data breach / data exposure</option>
+                <option>Payment card / POS compromise</option>
+                <option>Denial of service</option>
+                <option>Insider threat</option>
+                <option>Third-party / vendor breach</option>
+                <option>Lost or stolen device</option>
+                <option>Unknown / still investigating</option>
+              </select>
+            </div>
+            <div>
+              <label for="time_detected" class="req">When was it detected?</label>
+              <input type="datetime-local" id="time_detected" name="time_detected" required>
+              <p class="hint">Your local time. Best estimate is fine.</p>
+            </div>
+            <div>
+              <label for="time_started">When might it have started?</label>
+              <input type="text" id="time_started" name="time_started" placeholder="e.g. 'last weekend', 'unknown'">
+            </div>
+            <div>
+              <label for="detected_by">How was it detected?</label>
+              <select id="detected_by" name="detected_by">
+                <option value="">Select...</option>
+                <option>Security tool alert (EDR, SIEM, AV)</option>
+                <option>Employee noticed something</option>
+                <option>Ransom note</option>
+                <option>Customer, guest or partner report</option>
+                <option>Bank, card brand or processor</option>
+                <option>Law enforcement / government notice</option>
+                <option>MSSP / IT provider</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="q" style="margin-top:16px">
+            <label for="description" class="req">Describe what you are seeing</label>
+            <textarea id="description" name="description" required placeholder="What happened, what systems or people are involved, any error messages or ransom notes, and what has been done so far."></textarea>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>3. Systems affected</legend>
+          <div class="checks">
+            <label><input type="checkbox" name="systems_affected" value="Workstations / laptops"> Workstations / laptops</label>
+            <label><input type="checkbox" name="systems_affected" value="Servers"> Servers</label>
+            <label><input type="checkbox" name="systems_affected" value="Domain controllers / identity"> Active Directory / Entra ID / identity</label>
+            <label><input type="checkbox" name="systems_affected" value="Email / Microsoft 365 / Google Workspace"> Email / Microsoft 365 / Google Workspace</label>
+            <label><input type="checkbox" name="systems_affected" value="Cloud (AWS / Azure / GCP)"> Cloud (AWS / Azure / GCP)</label>
+            <label><input type="checkbox" name="systems_affected" value="Payment / POS"> Payment / POS</label>
+            <label><input type="checkbox" name="systems_affected" value="Gaming systems (slots, table, CMS)"> Gaming systems (slots, table games, casino management)</label>
+            <label><input type="checkbox" name="systems_affected" value="Hotel PMS / reservations"> Hotel PMS / reservations / loyalty</label>
+            <label><input type="checkbox" name="systems_affected" value="OT / building systems"> OT / building systems / door locks</label>
+            <label><input type="checkbox" name="systems_affected" value="Backups"> Backups</label>
+            <label><input type="checkbox" name="systems_affected" value="Website / public apps"> Website / public apps</label>
+            <label><input type="checkbox" name="systems_affected" value="Unknown"> Unknown</label>
+          </div>
+          <div class="fields" style="margin-top:16px">
+            <div>
+              <label for="scope">How widespread?</label>
+              <select id="scope" name="scope">
+                <option value="unknown">Unknown</option>
+                <option value="single">Single system or user</option>
+                <option value="multiple">Several systems or users</option>
+                <option value="widespread">Widespread / multiple sites</option>
+              </select>
+            </div>
+            <div>
+              <label for="systems_detail">Hostnames, accounts or locations (optional)</label>
+              <input type="text" id="systems_detail" name="systems_detail" placeholder="e.g. FS01, finance mailbox, Henderson property">
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>4. Severity questions</legend>
+          <div class="q">
+            <label class="req">What is the impact on business operations?</label>
+            <div class="radios">
+              <label><input type="radio" name="business_impact" value="none" required> No impact yet</label>
+              <label><input type="radio" name="business_impact" value="degraded"> Degraded</label>
+              <label><input type="radio" name="business_impact" value="stopped"> Critical operations stopped</label>
+            </div>
+          </div>
+          <div class="q">
+            <label class="req">Could the attacker still have access?</label>
+            <div class="radios">
+              <label><input type="radio" name="attacker_active" value="no" required> No, contained</label>
+              <label><input type="radio" name="attacker_active" value="yes"> Yes / likely</label>
+              <label><input type="radio" name="attacker_active" value="unknown"> Unknown</label>
+            </div>
+          </div>
+          <div class="q">
+            <label class="req">Is there a ransom note, encryption or extortion demand?</label>
+            <div class="radios">
+              <label><input type="radio" name="ransomware" value="no" required> No</label>
+              <label><input type="radio" name="ransomware" value="yes"> Yes</label>
+            </div>
+          </div>
+          <div class="q">
+            <label class="req">Do you suspect data was stolen?</label>
+            <div class="radios">
+              <label><input type="radio" name="data_exfil" value="no" required> No</label>
+              <label><input type="radio" name="data_exfil" value="yes"> Yes</label>
+              <label><input type="radio" name="data_exfil" value="unknown"> Unknown</label>
+            </div>
+          </div>
+          <div class="q">
+            <label>Which kinds of regulated data could be involved?</label>
+            <div class="checks">
+              <label><input type="checkbox" name="regulated_data" value="Payment card (PCI)"> Payment card (PCI)</label>
+              <label><input type="checkbox" name="regulated_data" value="Personal information (PII)"> Guest / customer / employee PII</label>
+              <label><input type="checkbox" name="regulated_data" value="Health (PHI)"> Health information (PHI)</label>
+              <label><input type="checkbox" name="regulated_data" value="CUI / DoD contract data"> CUI / DoD contract data</label>
+              <label><input type="checkbox" name="regulated_data" value="Gaming regulated data"> Gaming regulated data</label>
+              <label><input type="checkbox" name="regulated_data" value="none"> None / unknown</label>
+            </div>
+          </div>
+          <div class="q">
+            <label>Have any of these been contacted?</label>
+            <div class="checks">
+              <label><input type="checkbox" name="notified" value="Cyber insurance carrier"> Cyber insurance carrier</label>
+              <label><input type="checkbox" name="notified" value="Breach counsel / attorney"> Breach counsel / attorney</label>
+              <label><input type="checkbox" name="notified" value="Law enforcement (FBI / local)"> Law enforcement (FBI / local)</label>
+              <label><input type="checkbox" name="notified" value="Nevada Gaming Control Board"> Nevada Gaming Control Board</label>
+              <label><input type="checkbox" name="notified" value="DoD (DIBNet) / contracting officer"> DoD (DIBNet) / contracting officer</label>
+              <label><input type="checkbox" name="notified" value="Another IR firm / MSSP"> Another IR firm / MSSP</label>
+            </div>
+          </div>
+          <div class="fields">
+            <div>
+              <label for="insurance_carrier">Cyber insurance carrier (if any)</label>
+              <input type="text" id="insurance_carrier" name="insurance_carrier">
+            </div>
+            <div>
+              <label for="service_needed">What do you need from us?</label>
+              <select id="service_needed" name="service_needed">
+                <option>Hands-on triage and response</option>
+                <option>Oversight of another IR firm</option>
+                <option>Second opinion / advice</option>
+                <option>Not sure yet</option>
+              </select>
+            </div>
+          </div>
+        </fieldset>
+
+        <div class="priority-box" aria-live="polite">
+          <span class="muted">Provisional priority:</span>
+          <span id="ir-priority" class="p p4">P4 Low</span>
+          <span id="ir-priority-why" class="hint"></span>
+        </div>
+
+        <label style="font-weight:400;display:flex;gap:8px;align-items:flex-start">
+          <input type="checkbox" name="consent" value="yes" required>
+          <span>I understand that submitting this form does not create a contract for services, and that I should call the hotline for an active, critical incident.</span>
+        </label>
+
+        <div id="ir-status" class="status" role="status"></div>
+
+        <div class="actions" style="margin-top:0">
+          <button type="submit" class="btn">Submit for triage</button>
+          <a class="btn alert" data-ir-hotline href="tel:+17025550100">(702) 555-0100</a>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <footer class="ir-footer">
+    <div class="wrap">
+      <span>&copy; CSI Cyber Solutions &middot; Las Vegas, Nevada</span>
+      <span>IR hotline: <a data-ir-hotline href="tel:+17025550100">(702) 555-0100</a></span>
+    </div>
+  </footer>
+  <script src="assets/ir-config.js"></script>
+  <script src="assets/ir-common.js"></script>
+  <script src="assets/ir-intake.js"></script>
+</body>
+</html>
